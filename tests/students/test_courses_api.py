@@ -31,13 +31,13 @@ def test_get_course(api_client, courses_factory):
     course = courses_factory(_quantity=1, id=1)
     _id = course[0].pk
     # Act
-    response = api_client.get(f'/api/v1/courses/',  data={'id': _id})
+    response = api_client.get(f'/api/v1/courses/{_id}/')
     data = response.json()
 
     # Assert
     assert response.status_code == 200
-    assert data[0]['name'] == course[0].name
-    assert data[0]['id'] == _id
+    assert data['name'] == course[0].name
+    assert data['id'] == _id
 
 
 @pytest.mark.django_db
